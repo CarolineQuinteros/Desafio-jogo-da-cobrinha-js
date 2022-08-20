@@ -1,0 +1,80 @@
+deixar tela = documento. getElementById ("cobra");
+deixe contexto =tela. getContext ("2d");
+let box = 32;
+deixe cobra = [];
+cobra[0] = {
+    x:10 * caixa,
+    y:10 * caixa
+}; 
+deixar direção = "direita";
+deixar comida = {
+    x: Matemática. piso (Matemática. aleatório() * 15 + 1) * caixa,
+    y: Matemática. piso (Matemática. aleatório() * 15 + 1) * caixa
+}
+função criarBG() {
+    contexto. fillStyle = "lightgreen";
+    contexto. fillRect(0, 0 , 16 * caixa, 16 * caixa);
+}
+função criarCobrinha(){
+    para(i=0; i < cobra. comprimento; i++){
+        contexto. fillStyle = "verde";
+        contexto. fillRect (cobra[i]. x, cobra[i]. y, caixa, caixa);
+    }
+}
+função drawFood(){
+    contexto. fillStyle = "rosa";
+    contexto. fillRect (alimento. x, comida. y, caixa, caixa);
+}
+
+documento. addEventListener ('keydown' , atualização);
+
+atualização de função (evento){
+    se (evento. keyCode == 37 && direção  != "direita") direção = "esquerda";
+    se (evento. keyCode == 38 && e direção != "para baixo") direção = "up";
+    se (evento. keyCode == 39 && e direção != "esquerda") direção = "direita";
+    se (evento. keyCode == 40 && e direção != "up") direção = "down";
+}
+
+função iniciarJogo(){
+    se (cobra[0]. x > 15 * caixa && direção == "direita") cobra[0]. x = 0;
+    se (cobra[0]. x < 0 && direção == "esquerda") cobra[0]. x = 16 * caixa;
+    se (cobra[0]. y > 15 * caixa && direção == "para baixo") cobra[0]. y = 0;
+    se (cobra[0]. y < 0 && direção == "up") cobra[0]. y = 16 * caixa;
+
+    para(i=1; i < cobra. comprimento; i++){
+        se (cobra[0]. x == cobra[i]. x && cobra[0]. y == cobra[i]. y){
+            clearInterval (jogo);
+            alerta ('Game Over : (');
+        }
+    }
+
+    criarBG();
+    criarCobrinha();
+    drawFood();
+    
+    deixe snakeX = cobra[0]. x;
+    deixe snakeY = cobra[0]. y;
+
+    se (direção == "direita") snakeX += caixa;
+    se (direção == "esquerda") snakeX -= caixa;
+    se (direção == "up") snakeY -= caixa;
+    se (direção == "para baixo") snakeY += caixa;
+    
+    se (snakeX != alimento. x || cobraDo != alimento. y){
+        cobra. Pop();
+    } 
+
+   outra coisa{comida. x = Matemática. piso (Matemática. aleatório() * 15 + 1) * caixa;
+        comida. y = Matemática. piso (Matemática. aleatório() * 15 + 1) * caixa;
+   }
+    
+   deixe newHead = {
+        x: snakeX,
+        y: cobraY
+    }
+
+    cobra. unshift (newHead);
+
+}
+
+deixar jogo = setInterval(iniciarJogo, 100);
