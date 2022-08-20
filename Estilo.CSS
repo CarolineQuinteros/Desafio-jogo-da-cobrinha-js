@@ -1,0 +1,11 @@
+corpo {
+    cor de fundo: aquamarine;
+    altura: 94vh;
+    largura: 95;
+    display: flex;
+    justificar-conteúdo: centro;
+    itens de alinhamento: centro;
+    flex-direção: coluna;
+    cor: rgb( 44, 139, 44);
+    tamanho da fonte: 20px;
+}
